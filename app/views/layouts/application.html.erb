@@ -18,6 +18,8 @@
     <%= render partial: 'components/navbar' %>
 
     <div class="container" >
+    <%# render flash messeges %>
+      <%= render partial: 'components/flash' %>
       <%= yield %>
     </div>
   </body>
