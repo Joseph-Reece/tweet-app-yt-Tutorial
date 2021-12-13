@@ -9,6 +9,8 @@ this model is for the user table in the database
 =end
 
 class User < ApplicationRecord
+    has_many :tweets
+    has_many :twitter_accounts
     has_secure_password
 
     validates :email, 

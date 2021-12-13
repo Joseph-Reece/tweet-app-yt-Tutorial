@@ -1,0 +1,18 @@
+<div class="d-flex align-items-center justify-content-between" >
+<h1> Tweets </h1>
+
+<% if Current.user.twitter_accounts.any? %>
+    <%= link_to "Schedule Tweet", new_tweet_path, class: "btn btn-primary" %>
+<% end %>
+</div>
+
+<% if Current.user.twitter_accounts.none? %>
+    <div class="alert alert-warning">
+        <h2>You need to add a Twitter account to schedule tweets.</h2>
+        <p>
+            <%= link_to "Add Twitter Account", "/auth/twitter", method: :post, class: "btn btn-primary" %>
+        </p>
+    </div>
+<% end %>
+
+<%= render @tweet %>

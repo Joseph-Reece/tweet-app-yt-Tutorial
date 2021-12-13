@@ -1,8 +1,6 @@
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 Rails.application.routes.draw do
-  namespace :auth do
-  end
   # define the root path
   root to: 'main#index'
 
@@ -24,9 +22,12 @@ Rails.application.routes.draw do
 
     get 'password_resets/edit', to: 'password_resets#edit', as: 'edit_password_reset'
     patch 'password_resets/edit', to: 'password_resets#update', as: 'update_password_reset'
-  end
 
-  # get 'main/index'
+  end
+  get '/auth/twitter/callback', to: 'omniauth_callbacks#twitter'
+
+  resources :twitter_accounts
+  resources :tweets
+
   get '/about', to: 'about#index', as: 'about'
-  # get 'about/show'
 end

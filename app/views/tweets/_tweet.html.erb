@@ -1,0 +1,37 @@
+<div class="card mb-3 col-md-6 mb-2">
+    <div class="card-body">
+        <div class="row" >
+            <div class="col-md-4">
+                <img src="<%= tweet.twitter_account.image %>" class="img-fluid rounded-circle" alt="">
+            </div>
+            <div class="col-md-8">
+                <h5 class="card-title">Name: <%= tweet.twitter_account.name %></h5>
+                <p class="card-text">User name: <%= link_to "@#{tweet.twitter_account.username}", "https://twitter.com/#{tweet.twitter_account.username}", target: :_blank %></p>
+            </div>
+        </div>
+        <p class="card-text"><%= tweet.body %></p>
+    </div>
+    <%# card-footer %>
+    <div class="card-footer" >
+        <div class="row">
+            <div class="col-md-4" >
+                <% if tweet.published? %>
+                    <%# <%= link_to 'Unpublish', unpublish_tweet_path(@tweet), method: :patch, class: 'btn btn-danger' %> %>
+                    <%= link_to "Check Tweet", "https://twitter.com/#{tweet.twitter_account.username}/status/#{tweet.tweet_id}",  class: "btn btn-primary" %>
+
+                <% else %>
+                Scheduled for <%= l tweet.publish_at, format: :short %>
+                    <%# <%= link_to "Publish Tweet", "#",  class: "btn btn-primary" %> 
+
+                <% end %>
+            </div>
+            <div class="col-md-4">
+                <%= link_to "Edit", edit_tweet_path(tweet), class: "btn btn-warning" %>
+            </div>
+            <div class="col-md-4">
+                <%= link_to "Delete", tweet, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+            </div>
+        </div>
+        <%# <%= link_to 'Disconnect', tweet.twitter_account, method: :delete, class: "btn btn-danger" %> 
+    </div>
+</div>

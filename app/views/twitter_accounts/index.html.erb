@@ -1,0 +1,26 @@
+<div class="d-flex align-items-center justify-content-between" >
+    <h1> My Twitter Accounts </h1>
+
+    <%= button_to 'Connect Twitter', "/auth/twitter", method: :post, class: "btn btn-primary" %>
+</div>
+
+<% @twitter_accounts.each do |twitter_account| %>
+<div class="card mb-3 col-md-6">
+    <div class="card-body">
+        <div class="row" >
+            <div class="col-md-4">
+                <img src="<%= twitter_account.image %>" class="img-fluid rounded-circle" alt="">
+            </div>
+            <div class="col-md-8">
+                <h5 class="card-title">Name: <%= twitter_account.name %></h5>
+                <p class="card-text">User name: <%= link_to "@#{twitter_account.username}", "https://twitter.com/#{twitter_account.username}", target: :_blank %></p>
+                <p class="card-text"><%= twitter_account.created_at %></p>
+            </div>
+        </div>
+    </div>
+    <%# card-footer %>
+    <div class="card-footer" >    
+        <%= link_to 'Disconnect', twitter_account, method: :delete, class: "btn btn-danger" %>
+    </div>
+</div>
+<% end %>

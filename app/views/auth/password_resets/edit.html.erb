@@ -1,14 +1,7 @@
 <h1>Change Password</h1>
 
 <%= form_with model: [:auth, @user], url: auth_edit_password_reset_path(token: params[:token]) do |form| %>
-<% if @user.errors.any? %>
-        <% @user.errors.full_messages.each do |msg| %>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">                
-                <%= msg %>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-    <% end %>
-<% end %>
+<%= render 'components/form_errors', form: form %>
 
    <div class="form-group mb-3" >
         <%= form.label :password, "New Password" %>
