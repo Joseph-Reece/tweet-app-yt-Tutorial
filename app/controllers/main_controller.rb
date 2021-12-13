@@ -1,6 +1,9 @@
 class MainController < ApplicationController
   def index
-    flash.now[:notice] = 'Welcome to the Schedule Tweets App!'
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+    end
+    # flash.now[:notice] = 'Welcome to the Schedule Tweets App!'
 
   end
 end

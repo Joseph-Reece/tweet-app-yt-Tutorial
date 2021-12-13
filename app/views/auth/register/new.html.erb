@@ -1,0 +1,29 @@
+<h2 class="text-center mt-2"> SignUp Form</h2>
+
+<%= form_with model:[:auth, @user], url: auth_register_path do |form| %>
+<% if @user.errors.any? %>
+        <% @user.errors.full_messages.each do |msg| %>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">                
+                <%= msg %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+    <% end %>
+<% end %>
+
+    <div class="form-group mt-2">
+        <%= form.label :email, "Email" %>
+        <%= form.text_field :email, class: "form-control" %> 
+    </div>
+    <div class="form-group mt-2">
+        <%= form.label :password, "Password" %>
+        <%= form.password_field :password, class: "form-control", placeholder: "password" %>
+    </div>
+    <div class="form-group mt-2">
+        <%= form.label :password_confirmation, "Password Confirmation" %>
+        <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Re Enter password" %>
+    </div>
+    <div class="form-group mt-2">
+        <%= form.submit "Sign Up", class: "btn btn-primary" %>
+    </div>
+<% end %>
+
